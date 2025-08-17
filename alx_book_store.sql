@@ -1,18 +1,12 @@
 CREATE DATABASE IF NOT EXISTS alx_book_store;
 USE alx_book_store;
 
-DROP TABLE IF EXISTS Order_Details;
-DROP TABLE IF EXISTS Orders;
-DROP TABLE IF EXISTS Books;
-DROP TABLE IF EXISTS Authors;
-DROP TABLE IF EXISTS Customers;
-
-CREATE TABLE Authors(
+CREATE TABLE Authors (
     author_id INT PRIMARY KEY,
     author_name VARCHAR(215)
 );
 
-CREATE TABLE Books(
+CREATE TABLE Books (
     book_id INT PRIMARY KEY,
     title VARCHAR(130),
     author_id INT,
@@ -21,21 +15,21 @@ CREATE TABLE Books(
     FOREIGN KEY (author_id) REFERENCES Authors(author_id)
 );
 
-CREATE TABLE Customers(
+CREATE TABLE Customers (
     customer_id INT PRIMARY KEY,
     customer_name VARCHAR(215),
     email VARCHAR(215),
     address TEXT
 );
 
-CREATE TABLE Orders(
+CREATE TABLE Orders (
     order_id INT PRIMARY KEY,
     customer_id INT,
     order_date DATE,
     FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 );
 
-CREATE TABLE Order_Details(
+CREATE TABLE Order_Details (
     orderdetailid INT PRIMARY KEY,
     order_id INT,
     book_id INT,
