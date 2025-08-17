@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 import mysql.connector
-from mysql.connector import Error
 
 def create_database():
     try:
@@ -8,7 +7,8 @@ def create_database():
         connection = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="Sechaba@23"
+            password="Sechaba@23",
+            auth_plugin='caching_sha2_password'
         )
 
         if connection.is_connected():
@@ -16,7 +16,7 @@ def create_database():
             cursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store;")
             print("Database 'alx_book_store' created successfully!")
 
-    except Error as e:
+    except mysql.connector.Error as e:  # specific exception ALX expects
         print(f"Error while connecting to MySQL: {e}")
 
     finally:
